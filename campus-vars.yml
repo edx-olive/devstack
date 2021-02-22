@@ -1,0 +1,117 @@
+## Branches and versions
+
+edx_ansible_source_repo: https://github.com/edx-olive/configuration
+configuration_version: gabor/fix-box-creation
+
+edx_platform_repo: https://github.com/edx-olive/edx-platform
+edx_platform_version: pooja/cherry-pick-pymongo-upgrade
+
+forum_source_repo: https://github.com/edx-olive/cs_comments_service.git
+forum_version: opencraft-release/ginkgo.2-campus
+
+ANALYTICS_API_VERSION: open-release/ginkgo.2
+DISCOVERY_VERSION: open-release/ginkgo.master
+ECOMMERCE_VERSION: open-release/ginkgo.2
+INSIGHTS_VERSION: open-release/ginkgo.master  # bower dependency bug in ginkgo.2
+NOTIFIER_VERSION: open-release/ginkgo.2
+certs_version: open-release/ginkgo.2
+demo_version: open-release/ginkgo.master
+xqueue_version: open-release/ginkgo.2
+
+
+## I18N Configuration
+
+EDXAPP_LANGUAGE_CODE: "he"
+EDXAPP_TIME_ZONE: "Asia/Jerusalem"
+EDXAPP_ENV_EXTRA:
+  LANGUAGE_CODE: "he"
+  LANGUAGES:
+  - ['he', u'עברית']    # Hebrew
+  - ['ar', u'العربية']  # Arabic
+  - ['en', u'English']  # English
+  TIME_ZONE_DISPLAYED_FOR_DEADLINES: "{{ EDXAPP_TIME_ZONE }}"
+
+  ## Environment variables
+  COURSE_ABOUT_VISIBILITY_PERMISSION: "see_about_page"
+  COURSE_CATALOG_VISIBILITY_PERMISSION: "see_in_catalog"
+  DEFAULT_FROM_EMAIL: "support@example.com"
+  PLATFORM_NAME: "קמפוס"
+  REGISTRATION_EXTRA_FIELDS:
+    first_name: "required"
+    last_name: "required"
+    level_of_education: "optional"
+    gender: "optional"
+    year_of_birth: "required"
+    mailing_address: "hidden"
+    goals: "hidden"
+    terms_of_service: "required"
+    honor_code: "hidden"
+    city: "required"
+    country: "required"
+  SUPPORT_SITE_LINK: "mailto:{{ EDXAPP_DEFAULT_FEEDBACK_EMAIL }}"
+  TECH_SUPPORT_EMAIL: "support@example.com"
+  THIRD_PARTY_AUTH_BACKENDS:
+    - campus_social_auth.backends.oauth2.FacebookOAuth2Backend
+    - campus_social_auth.backends.oauth2.GoogleOAuth2Backend
+    - campus_social_auth.backends.saml.CampusSAMLAuthBackend
+
+## Extra requirements
+EDXAPP_INSTALL_PRIVATE_REQUIREMENTS: true
+
+EDXAPP_EXTRA_REQUIREMENTS:
+  - name: git+https://github.com/edx-olive/campus-social-auth.git@v1.0.1#egg=campus-social-auth==1.0.1
+  - name: git+https://github.com/ILCET/lo-activity-xblock.git@v1.1.0#egg=lo-activity-xblock==1.1.0
+  - name: git+https://github.com/edx-olive/ubcpi@154011e223de0637e3ce3f58b366886013e76e59#egg=ubcpi==0.6.4a
+  - name: git+https://github.com/Stanford-Online/xblock-in-video-quiz@release/v0.1.7#egg=invideoquiz-xblock==0.1.7
+  - name: git+https://github.com/annoto-campus/xblock-in-video-collaboration@89e63be6130baf318ef6a8e7e8406f27679045b6#egg=annoto-xblock # master as of 2019-12-05
+
+## Features
+EDXAPP_FEATURES:
+  CUSTOM_COURSES_EDX: true
+  ENABLE_COMBINED_LOGIN_REGISTRATION: true
+  ENABLE_UNICODE_USERNAME: true
+  ALLOW_UNICODE_COURSE_ID: true
+  DISPLAY_SENSITIVE_DATA_MSG_FOR_DOWNLOADS: true
+  ENABLE_CONTENT_LIBRARIES: true
+  ENABLE_MOBILE_REST_API: true
+  ENABLE_EXTENDED_COURSE_DETAILS: true
+  ENABLE_FEEDBACK_SUBMISSION: true
+  ENABLE_MKTG_SITE: false
+  ENABLE_THIRD_PARTY_AUTH: true
+  ENABLE_UNSUPPORTED_BROWSER_ALERT: true
+  PREVIEW_LMS_BASE: "{{ EDXAPP_PREVIEW_LMS_BASE }}"
+
+EDXAPP_DEFAULT_COURSE_VISIBILITY_IN_CATALOG: "none"
+EDXAPP_COURSE_CATALOG_VISIBILITY_PERMISSION: "see_in_catalog"
+EDXAPP_COURSE_ABOUT_VISIBILITY_PERMISSION: "see_about_page"
+
+## Theme Configuration
+
+ECOMMERCE_COMPREHENSIVE_THEME_DIRS: 
+  - /edx/app/edxapp/themes/ecommerce
+ECOMMERCE_ENABLE_COMPREHENSIVE_THEMING: true
+ECOMMERCE_DEFAULT_SITE_THEME: "israelxedu.gov.il"
+
+EDXAPP_ENABLE_COMPREHENSIVE_THEMING: true
+EDXAPP_COMPREHENSIVE_THEME_DIRS: 
+  - /edx/app/edxapp/themes/edx-platform
+EDXAPP_COMPREHENSIVE_THEME_LOCALE_PATHS:
+  - /edx/app/edxapp/themes/conf/locale
+EDXAPP_DEFAULT_SITE_THEME: "israelxedu.gov.il"
+
+THEMES_VERSION: "master"
+THEMES_GIT_MIRROR: "github.com"
+THEMES_GIT_PATH: "edx-olive"
+THEMES_REPO: "themes.git"
+
+# Required because the ginkgo vagrant box doesn't ship with an edx-themes user.
+themes_user: "{{ edxapp_user }}"
+themes_group: "{{ common_web_group }}"
+themes_home: "{{ edxapp_app_dir }}"
+THEMES_CODE_DIR: "/edx/app/edxapp/themes"
+
+common_node_version: "6.11.1"
+
+## Devstack-specific configuration
+
+ENABLE_DISCOVERY_METADATA_REFRESH_CRONTASK: False
