@@ -27,7 +27,7 @@ forum_source_repo: https://github.com/edx-olive/cs_comments_service.git
 forum_version: opencraft-release/ginkgo.2-campus
 
 ANALYTICS_API_VERSION: open-release/ginkgo.2
-DISCOVERY_VERSION: open-release/ginkgo.master
+DISCOVERY_VERSION: opencraft-release/ginkgo.2-campus
 ECOMMERCE_VERSION: open-release/ginkgo.2
 INSIGHTS_VERSION: open-release/ginkgo.master  # bower dependency bug in ginkgo.2
 NOTIFIER_VERSION: open-release/ginkgo.2
