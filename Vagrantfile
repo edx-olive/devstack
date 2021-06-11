@@ -172,9 +172,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ['modifyvm', :id, '--nictype1', 'virtio']
   end
 
-  # Use vagrant-vbguest plugin to make sure Guest Additions are in sync
-  config.vbguest.auto_reboot = true
-  config.vbguest.auto_update = true
+  # Disable auto-update as it causes plugin failures
+  config.vbguest.auto_update = false
 
   # Assume that the base box has the edx_ansible role installed
   # We can then tell the Vagrant instance to update itself.

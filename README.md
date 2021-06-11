@@ -18,7 +18,7 @@ git clone git@gitlab.com:opencraft/client/campus/campus-devstack.git
 2. Provision the devstack:
 
 ```terminal
-vagrant plugin update vagrant-vbguest
+vagrant plugin install vagrant-vbguest --plugin-version 0.21
 vagrant up
 ```
 
